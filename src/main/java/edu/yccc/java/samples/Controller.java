@@ -26,6 +26,7 @@ public class Controller
 	@RequestMapping(value = "/chat", method = RequestMethod.GET)
 	public List<Message> chat()
 	{
+		// Simple objects will return as JSON.  Lists of simple objects returns as a list of JSON elements.
 		List<Message> messages = new ArrayList<Message>();
 		
 		messages.add(new Message("7", "Java is fun"));
