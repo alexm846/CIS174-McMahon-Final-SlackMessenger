@@ -1,9 +1,11 @@
-package edu.yccc.java.samples.slack;
+package edu.yccc.java.samples.slackservice;
 
 import org.springframework.stereotype.Component;
 
 import net.gpedro.integrations.slack.SlackApi;
 import net.gpedro.integrations.slack.SlackMessage;
+import net.gpedro.integrations.slack.SlackAttachment;
+
 
 /**
  * First pass integration with slack. 
@@ -23,6 +25,12 @@ public class SlackService
 	public void sendMessage(String channel, String userName, String message) 
 	{
 		api.call(new SlackMessage(channel, userName, message));
+	}
+	public void sendMessageAttch(String channel, String userName, String message, SlackAttachment attachment) 
+	{
+		SlackMessage go = new SlackMessage(channel, userName, message);
+		go.addAttachments(attachment);
+		api.call(go);
 	}
 
 }
