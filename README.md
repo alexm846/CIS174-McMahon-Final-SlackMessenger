@@ -1,3 +1,16 @@
+# Slack Messenger
+
+## About this project
+Build an app to post several different types of messages to Slack through UI.
+
+-Employ multiple UI windows 
+-Post both Channel & direct messages 
+-Be able to add attachments to messages 
+-Demonstrate use of Git library & Maven integration 
+-Employ Java collections, such as Lists or Maps 
+
+
+@mikebourgeois
 # YCCC Java Samples
 
 ## About this project
@@ -6,6 +19,3 @@ Those benefits come with a steep learning curve.  Please provide feedback as the
 
 ## Slack Integration
 Available in SlackService class
-
-## More samples coming soon
-All samples will be migrated to this project shortly.
