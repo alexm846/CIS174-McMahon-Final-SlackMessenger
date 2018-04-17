@@ -3,11 +3,11 @@
 ## About this project
 Build an app to post several different types of messages to Slack through UI.
 
--Employ multiple UI windows 
--Post both Channel & direct messages 
--Be able to add attachments to messages 
--Demonstrate use of Git library & Maven integration 
--Employ Java collections, such as Lists or Maps 
+1. Employ multiple UI windows 
+2. Post both Channel & direct messages 
+3. Be able to add attachments to messages 
+4. Demonstrate use of Git library & Maven integration 
+5. Employ Java collections, such as Lists or Maps 
 
 
 @mikebourgeois
