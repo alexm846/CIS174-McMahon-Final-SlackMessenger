@@ -9,7 +9,8 @@ Build an app to post several different types of messages to Slack through UI.
 4. Demonstrate use of Git library & Maven integration 
 5. Employ Java collections, such as Lists or Maps 
 
-
+## How to use:
+run:    RunThisFirst.java
 
 # YCCC Java Samples
 @mikebourgeois
