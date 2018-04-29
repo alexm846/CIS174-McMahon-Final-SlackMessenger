@@ -12,15 +12,19 @@ import javax.swing.*;    // Using Swing's components and containers
 public class MoveABall extends JFrame {
    // Define constants for the various dimensions
    public static final int CANVAS_WIDTH = 1800;
-   public static final int CANVAS_HEIGHT = 800;
+   public static final int CANVAS_HEIGHT = 700;
    public static final Color CANVAS_BACKGROUND = Color.GREEN;
-   public static final Color CIRCLE_FILL_COLOR = Color.BLACK;
+   public static Color circleColor = Color.BLACK;
+   private static final int UPDATE_PERIOD = 50; // milliseconds
+   
  
    // The moving line from (x1, y1) to (x2, y2), initially position at the center
    private int x1 = 100;
    private int y1 = CANVAS_HEIGHT - 300;
    private int x2 = 200;
    private int y2 = 200;
+   private int xSpeed = 10, ySpeed = 10;
+   int count = 0;
    
    Random rand = new Random();
  
@@ -34,7 +38,25 @@ public class MoveABall extends JFrame {
       btnPanel.add(btnColor);
       btnColor.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent evt) {
-        	System.out.println("DO SOMETHING");
+        	System.out.println(count);
+        	switch(count) {
+        	case 0: circleColor = Color.BLUE;
+        			break;
+        	case 1: circleColor = Color.ORANGE;
+    				break;
+        	case 2: circleColor = Color.YELLOW;
+    				break;
+        	case 3: circleColor = Color.WHITE;
+    				break;
+        	case 4: circleColor = Color.CYAN;
+    				break;
+        	case 5: circleColor = Color.RED;
+    				break;
+        	}
+        	count++;
+        	if(count == 6) {
+        		count = 0;
+        	}
             canvas.repaint();
             requestFocus(); // change the focus to JFrame to receive KeyEvent
          }
@@ -80,26 +102,43 @@ public class MoveABall extends JFrame {
          }
       });
       
+      ActionListener autoMove = new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent evt) {
+        	 x1 += xSpeed;
+             y1 += ySpeed;
+             if (x1 > CANVAS_WIDTH - 700 || x1 < 0) {
+                xSpeed = -xSpeed;
+             }
+             if (y1 > CANVAS_HEIGHT - 200 || y1 < 0) {
+                ySpeed = -ySpeed;
+             }
+             //update();   // update the (x, y) position
+             repaint();  // Refresh the JFrame, callback paintComponent()
+          }
+       };
+       
+  
       addKeyListener(new KeyAdapter() {
           @Override
           public void keyPressed(KeyEvent evt) {
              switch(evt.getKeyCode()) {
                 case KeyEvent.VK_SPACE:
-                
-                	y1 = rand.nextInt(50);
-                	x1 = rand.nextInt(100);
-                   repaint();
-                   break;
+                	// Allocate a Timer to run updateTask's actionPerformed() after every delay msec
+                   new Timer(UPDATE_PERIOD, autoMove).start();
+                   //will speed up ball
+                  
              }
           }
        });
  
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Handle the CLOSE button
-      setTitle("Move a Line");
+      setTitle("Move a Ball");
       pack();           // pack all the components in the JFrame
       setVisible(true); // show it
       requestFocus();   // set the focus to JFrame to receive KeyEvent
    }
+   
  
    /**
     * Define inner class DrawCanvas, which is a JPanel used for custom drawing.
@@ -109,9 +148,8 @@ public class MoveABall extends JFrame {
       public void paintComponent(Graphics g) {
          super.paintComponent(g);
          setBackground(CANVAS_BACKGROUND);
-         g.setColor(CIRCLE_FILL_COLOR);
-         g.fillOval(x1, y1, x2, y2); // Draw the line
-         g.drawLine(0, CANVAS_HEIGHT - 100, CANVAS_WIDTH, CANVAS_HEIGHT - 100);
+         g.setColor(circleColor);
+         g.fillOval(x1, y1, x2, y2); // Draw the ball  
       }
    }
  

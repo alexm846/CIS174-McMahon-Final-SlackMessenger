@@ -12,6 +12,7 @@ import net.gpedro.integrations.slack.SlackAttachment;
  * 
  * 
  * @author Mike Bourgeois
+ * @author alexjmcmahon
  *
  */
 
