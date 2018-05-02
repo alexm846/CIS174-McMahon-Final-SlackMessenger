@@ -1,4 +1,4 @@
-package edu.yccc.java.samples.slackservice;
+package edu.yccc.java.slackservice;
 
 import org.springframework.stereotype.Component;
 

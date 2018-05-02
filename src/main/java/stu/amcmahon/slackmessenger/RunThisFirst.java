@@ -8,7 +8,7 @@ public class RunThisFirst {
 	}
 	
 	public void run() {
-		ControllerGUI go = new ControllerGUI();
+		Controller go = new Controller();
 	}
 
 }

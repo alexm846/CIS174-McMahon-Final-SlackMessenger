@@ -1,8 +1,7 @@
 package stu.amcmahon.slackmessenger;
 
 /**
- * Channel Messenger GUI - Final project -- send messages to Slack channels
- * 
+ * Channel Messenger GUI - send messages to Slack channels
  * 
  * @author alexMcMahon
  *
@@ -18,6 +17,8 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JCheckBox;
+import javax.swing.border.BevelBorder;
 
 public class ChannelMessengerGUI {
 
@@ -29,10 +30,9 @@ public class ChannelMessengerGUI {
 	private String channel;
 	private String message;
 	AttachmentFrame frame = new AttachmentFrame();
-
+	
 	
 	public static void main(String[] args) {
-		
 	}
 
 	/**
@@ -55,28 +55,32 @@ public class ChannelMessengerGUI {
 	private void initialize() {
 		messengerFrame = new JFrame();
 		messengerFrame.setTitle("Slack Messenger");
-		messengerFrame.setBounds(100, 100, 650, 503);
+		messengerFrame.setBounds(100, 100, 650, 397);
 		messengerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		messengerFrame.getContentPane().setLayout(null);
 		
-		JLabel lblUsername = new JLabel("Username");
+		JLabel lblUsername = new JLabel("Username:");
 		lblUsername.setFont(new Font("Californian FB", Font.BOLD, 18));
 		lblUsername.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUsername.setBounds(70, 11, 202, 40);
 		messengerFrame.getContentPane().add(lblUsername);
 		
-		JLabel lblChannel = new JLabel("Channel");
+		JLabel lblChannel = new JLabel("Channel:");
 		lblChannel.setFont(new Font("Californian FB", Font.BOLD, 18));
 		lblChannel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblChannel.setBounds(322, 11, 302, 40);
 		messengerFrame.getContentPane().add(lblChannel);
 		
 		usernameField = new JTextField();
+		usernameField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		usernameField.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		usernameField.setBounds(46, 48, 266, 33);
 		messengerFrame.getContentPane().add(usernameField);
 		usernameField.setColumns(10);
 		
+		//editable channel input w/ some presets
 		channelBox = new JComboBox<String>();
+		channelBox.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		channelBox.setBounds(348, 48, 248, 33);
 		messengerFrame.getContentPane().add(channelBox);
 		channelBox.setEditable(true);
@@ -85,17 +89,19 @@ public class ChannelMessengerGUI {
 		channelBox.addItem("#integration");
 		channelBox.addItem("enter Channel Name");
 		
-		JLabel lblMessage = new JLabel("Message");
+		JLabel lblMessage = new JLabel("Message:");
 		lblMessage.setFont(new Font("Californian FB", Font.BOLD, 18));
 		lblMessage.setBounds(46, 105, 266, 40);
 		messengerFrame.getContentPane().add(lblMessage);
 		
 		messageArea = new JTextArea();
-		messageArea.setBounds(46, 144, 550, 241);
+		messageArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
+		messageArea.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		messageArea.setBounds(46, 144, 550, 107);
 		messengerFrame.getContentPane().add(messageArea);
 		//JButton: Inheritance & interface! extends AbstractButton & implements accessible
 		JButton btnSend = new JButton("Send"); 
-		btnSend.addActionListener(new ActionListener() { //What? ActionListener is an interface!
+		btnSend.addActionListener(new ActionListener() { //ActionListener is an interface
 			public void actionPerformed(ActionEvent arg0) {//interface method
 				getContent(); //get input text
 				messengerFrame.setVisible(false);
@@ -111,7 +117,7 @@ public class ChannelMessengerGUI {
 			}
 		});
 		btnSend.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnSend.setBounds(473, 396, 120, 57);
+		btnSend.setBounds(476, 279, 120, 57);
 		messengerFrame.getContentPane().add(btnSend);
 		
 		JButton attachmentButton = new JButton("Add Attachment");
@@ -119,10 +125,10 @@ public class ChannelMessengerGUI {
 		attachmentButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(true);
-				
 			}
 		});
-		attachmentButton.setBounds(66, 396, 137, 33);
+		attachmentButton.setBounds(46, 262, 137, 33);
 		messengerFrame.getContentPane().add(attachmentButton);
 	}
+	
 }

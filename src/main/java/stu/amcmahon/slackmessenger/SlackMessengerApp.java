@@ -1,4 +1,13 @@
 package stu.amcmahon.slackmessenger;
+/**
+ * Slack Messenger App
+ * 
+ * 
+ * @author Mike Bourgeois
+ * @author alexjmcmahon
+ *
+ */
+
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -6,10 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import edu.yccc.java.slackservice.SlackService;
 import net.gpedro.integrations.slack.SlackAttachment;
 import net.gpedro.integrations.slack.SlackAction;
 import net.gpedro.integrations.slack.SlackActionType;
-import edu.yccc.java.samples.slackservice.SlackService;
  
 
 
@@ -24,7 +34,6 @@ public class SlackMessengerApp {
 	@Test
 	public void sendMessage(String username, String channel, String message)
 	{
-	
 		slackService.sendMessage(channel, username, message);
 		
 	}

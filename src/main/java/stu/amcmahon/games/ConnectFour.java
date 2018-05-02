@@ -6,7 +6,8 @@ import java.awt.event.*;
 import javax.swing.*;
 /**
  * ConnectFour: Two-player Graphics version with Simple-OO
- * https://www.ntu.edu.sg/home/ehchua/programming/java/JavaGame_TicTacToe.html
+ * @author https://www.ntu.edu.sg/home/ehchua/programming/java/J4b_CustomGraphics.html
+ * @author alexjmcmahon
  */
 @SuppressWarnings("serial")
 public class ConnectFour extends JFrame {
@@ -143,6 +144,7 @@ public class ConnectFour extends JFrame {
 	         count = 0; // reset and count again if not consecutive
 	      }
 	   }
+	   //check 4 in a row columns
 	   for (int row = 0; row < ROWS; ++row) {
 		      if (board[row][colSelected] == theSeed) {
 		         ++count;
@@ -152,7 +154,7 @@ public class ConnectFour extends JFrame {
 		         count = 0; // reset and count again if not consecutive
 		      }
 		   }
-	   
+	   //check 4 in a row diagonal
 	    for(int col=5; col>2; col--) {
 	    	for(int row=0; row<4; row++) {
 	    		if (board[col][row] == theSeed && board[col - 1][row + 1] == theSeed
@@ -163,7 +165,7 @@ public class ConnectFour extends JFrame {
 	    		}	
 	    	}
 	    }
-		   
+		//check four in a row diagonal other direction   
 	    for(int col=5; col>2; col--) {
 	    	for(int row=5; row>2; row--) {
 	    		if (board[col][row] == theSeed && board[col - 1][row - 1] == theSeed
@@ -176,7 +178,7 @@ public class ConnectFour extends JFrame {
 	    }
 	
 	   
-	   return false;  // no 4-in-a-line found
+	   return false; 
    }
  
    /**
@@ -224,9 +226,9 @@ public class ConnectFour extends JFrame {
          if (currentState == GameState.PLAYING) {
             statusBar.setForeground(Color.BLACK);
             if (currentPlayer == Seed.RED) {
-               statusBar.setText("X's Turn");
+               statusBar.setText("Red's Turn");
             } else {
-               statusBar.setText("O's Turn");
+               statusBar.setText("Oranges's Turn");
             }
          } else if (currentState == GameState.DRAW) {
             statusBar.setForeground(Color.RED);

@@ -1,4 +1,4 @@
-package stu.amcmahon.slackmessenger;
+package stu.amcmahon.games;
 
 import java.awt.*;       // Using AWT's Graphics and Color
 import java.awt.event.*; // Using AWT's event classes and listener interface
@@ -6,7 +6,8 @@ import java.util.Random;
 
 import javax.swing.*;    // Using Swing's components and containers
 /**
- * Custom Graphics Example: Using key/button to move a line left or right.
+ * @author https://www.ntu.edu.sg/home/ehchua/programming/java/J4b_CustomGraphics.html
+ * @author alexjmcmahon
  */
 @SuppressWarnings("serial")
 public class MoveABall extends JFrame {
@@ -34,11 +35,12 @@ public class MoveABall extends JFrame {
    public MoveABall() {
       // Set up a panel for the buttons
       JPanel btnPanel = new JPanel(new FlowLayout());
+      //adds button to change color of ball
       JButton btnColor = new JButton("Change Color ");
       btnPanel.add(btnColor);
       btnColor.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent evt) {
-        	System.out.println(count);
+ 
         	switch(count) {
         	case 0: circleColor = Color.BLUE;
         			break;
@@ -73,6 +75,7 @@ public class MoveABall extends JFrame {
       cp.add(btnPanel, BorderLayout.SOUTH);
  
       // "super" JFrame fires KeyEvent
+      //use arrow keys to move ball
       addKeyListener(new KeyAdapter() {
          @Override
          public void keyPressed(KeyEvent evt) {
@@ -101,7 +104,7 @@ public class MoveABall extends JFrame {
             }
          }
       });
-      
+      //continuous ball movement -- changes direction at border
       ActionListener autoMove = new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent evt) {
@@ -113,8 +116,7 @@ public class MoveABall extends JFrame {
              if (y1 > CANVAS_HEIGHT - 200 || y1 < 0) {
                 ySpeed = -ySpeed;
              }
-             //update();   // update the (x, y) position
-             repaint();  // Refresh the JFrame, callback paintComponent()
+             repaint(); 
           }
        };
        
@@ -126,7 +128,7 @@ public class MoveABall extends JFrame {
                 case KeyEvent.VK_SPACE:
                 	// Allocate a Timer to run updateTask's actionPerformed() after every delay msec
                    new Timer(UPDATE_PERIOD, autoMove).start();
-                   //will speed up ball
+                   //will speed up ball w/ space bar pressed
                   
              }
           }

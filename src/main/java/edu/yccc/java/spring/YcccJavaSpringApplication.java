@@ -1,14 +1,14 @@
-package edu.yccc.java.samples;
+package edu.yccc.java.spring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class YcccJavaSamplesApplication 
+public class YcccJavaSpringApplication 
 {
 
 	public static void main(String[] args) {
-		SpringApplication.run(YcccJavaSamplesApplication.class, args);
+		SpringApplication.run(YcccJavaSpringApplication.class, args);
 	}
 	
 }
